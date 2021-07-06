@@ -1,0 +1,1063 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ElearningVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArticleComments">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Order" Type="int" />
+        </EntityType>
+        <EntityType Name="Exams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="MaxDegree" Type="int" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoId" Type="int" />
+          <Property Name="ArticleId" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="ExamId" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="QustOptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="QuestId" Type="int" />
+          <Property Name="IsValid" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserQuestions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="Likes" Type="int" />
+          <Property Name="Dislikes" Type="int" />
+          <Property Name="AnswersCount" Type="int" />
+          <Property Name="Views" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserReplies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="Likes" Type="int" />
+          <Property Name="Dislikes" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Role" Type="int" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="Subscribed" Type="int" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserWatchedVideos">
+          <Key>
+            <PropertyRef Name="VideoId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="VideoId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoComments">
+          <Key>
+            <PropertyRef Name="VideoId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="VideoId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VideoLessons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="VideoLink" Type="nvarchar(max)" />
+          <Property Name="Order" Type="int" />
+          <Property Name="YearNo" Type="int" />
+          <Property Name="UnitNo" Type="int" />
+          <Property Name="LessonNo" Type="int" />
+          <Property Name="ArticleId" Type="int" />
+        </EntityType>
+        <EntityType Name="WrittenArticles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="VideoLessonId" Type="int" />
+          <Property Name="YearNo" Type="int" />
+          <Property Name="UnitNo" Type="int" />
+          <Property Name="LessonNo" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_ArticleComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ArticleComments" Type="Self.ArticleComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleComments_WrittenArticles">
+          <End Role="WrittenArticles" Type="Self.WrittenArticles" Multiplicity="1" />
+          <End Role="ArticleComments" Type="Self.ArticleComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WrittenArticles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleComments">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exams_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Exams" Type="Self.Exams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exams">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Exams">
+          <End Role="Exams" Type="Self.Exams" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_VideoLessons">
+          <End Role="VideoLessons" Type="Self.VideoLessons" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoLessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_WrittenArticles">
+          <End Role="WrittenArticles" Type="Self.WrittenArticles" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WrittenArticles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QustOptions_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="QustOptions" Type="Self.QustOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QustOptions">
+              <PropertyRef Name="QuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuestions_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserQuestions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReplies_UserQuestions">
+          <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="0..1" />
+          <End Role="UserReplies" Type="Self.UserReplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserReplies">
+              <PropertyRef Name="QuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReplies_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserReplies" Type="Self.UserReplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserReplies">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWatchedVideos_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserWatchedVideos" Type="Self.UserWatchedVideos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserWatchedVideos">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWatchedVideos_VideoLessons">
+          <End Role="VideoLessons" Type="Self.VideoLessons" Multiplicity="1" />
+          <End Role="UserWatchedVideos" Type="Self.UserWatchedVideos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoLessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserWatchedVideos">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="VideoComments" Type="Self.VideoComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComments_VideoLessons">
+          <End Role="VideoLessons" Type="Self.VideoLessons" Multiplicity="1" />
+          <End Role="VideoComments" Type="Self.VideoComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoLessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoComments">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoLessons_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="VideoLessons" Type="Self.VideoLessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoLessons">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoLessons_WrittenArticles">
+          <End Role="WrittenArticles" Type="Self.WrittenArticles" Multiplicity="0..1" />
+          <End Role="VideoLessons" Type="Self.VideoLessons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WrittenArticles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoLessons">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WrittenArticles_VideoLessons">
+          <End Role="VideoLessons" Type="Self.VideoLessons" Multiplicity="0..1" />
+          <End Role="WrittenArticles" Type="Self.WrittenArticles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoLessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WrittenArticles">
+              <PropertyRef Name="VideoLessonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ElearningVModelStoreContainer">
+          <EntitySet Name="ArticleComments" EntityType="Self.ArticleComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exams" EntityType="Self.Exams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QustOptions" EntityType="Self.QustOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserQuestions" EntityType="Self.UserQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserReplies" EntityType="Self.UserReplies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserWatchedVideos" EntityType="Self.UserWatchedVideos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoComments" EntityType="Self.VideoComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoLessons" EntityType="Self.VideoLessons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WrittenArticles" EntityType="Self.WrittenArticles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ArticleComments_Users" Association="Self.FK_ArticleComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ArticleComments" EntitySet="ArticleComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleComments_WrittenArticles" Association="Self.FK_ArticleComments_WrittenArticles">
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+            <End Role="ArticleComments" EntitySet="ArticleComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exams_Courses" Association="Self.FK_Exams_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Exams" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Exams" Association="Self.FK_Questions_Exams">
+            <End Role="Exams" EntitySet="Exams" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_VideoLessons" Association="Self.FK_Questions_VideoLessons">
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_WrittenArticles" Association="Self.FK_Questions_WrittenArticles">
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QustOptions_Questions" Association="Self.FK_QustOptions_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QustOptions" EntitySet="QustOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuestions_Users" Association="Self.FK_UserQuestions_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserQuestions" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReplies_UserQuestions" Association="Self.FK_UserReplies_UserQuestions">
+            <End Role="UserQuestions" EntitySet="UserQuestions" />
+            <End Role="UserReplies" EntitySet="UserReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReplies_Users" Association="Self.FK_UserReplies_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserReplies" EntitySet="UserReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWatchedVideos_Users" Association="Self.FK_UserWatchedVideos_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserWatchedVideos" EntitySet="UserWatchedVideos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWatchedVideos_VideoLessons" Association="Self.FK_UserWatchedVideos_VideoLessons">
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+            <End Role="UserWatchedVideos" EntitySet="UserWatchedVideos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComments_Users" Association="Self.FK_VideoComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VideoComments" EntitySet="VideoComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComments_VideoLessons" Association="Self.FK_VideoComments_VideoLessons">
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+            <End Role="VideoComments" EntitySet="VideoComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoLessons_Courses" Association="Self.FK_VideoLessons_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoLessons_WrittenArticles" Association="Self.FK_VideoLessons_WrittenArticles">
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WrittenArticles_VideoLessons" Association="Self.FK_WrittenArticles_VideoLessons">
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ElearningVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ArticleComment">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ArticleComments_Users" FromRole="ArticleComments" ToRole="Users" />
+          <NavigationProperty Name="WrittenArticle" Relationship="Self.FK_ArticleComments_WrittenArticles" FromRole="ArticleComments" ToRole="WrittenArticles" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+          <NavigationProperty Name="Exams" Relationship="Self.FK_Exams_Courses" FromRole="Courses" ToRole="Exams" />
+          <NavigationProperty Name="VideoLessons" Relationship="Self.FK_VideoLessons_Courses" FromRole="Courses" ToRole="VideoLessons" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="MaxDegree" Type="Int32" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_Exams_Courses" FromRole="Exams" ToRole="Courses" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Exams" FromRole="Exams" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoId" Type="Int32" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="ExamId" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Exam" Relationship="Self.FK_Questions_Exams" FromRole="Questions" ToRole="Exams" />
+          <NavigationProperty Name="VideoLesson" Relationship="Self.FK_Questions_VideoLessons" FromRole="Questions" ToRole="VideoLessons" />
+          <NavigationProperty Name="WrittenArticle" Relationship="Self.FK_Questions_WrittenArticles" FromRole="Questions" ToRole="WrittenArticles" />
+          <NavigationProperty Name="QustOptions" Relationship="Self.FK_QustOptions_Questions" FromRole="Questions" ToRole="QustOptions" />
+        </EntityType>
+        <EntityType Name="QustOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QuestId" Type="Int32" />
+          <Property Name="IsValid" Type="Boolean" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_QustOptions_Questions" FromRole="QustOptions" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Likes" Type="Int32" />
+          <Property Name="Dislikes" Type="Int32" />
+          <Property Name="AnswersCount" Type="Int32" />
+          <Property Name="Views" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserQuestions_Users" FromRole="UserQuestions" ToRole="Users" />
+          <NavigationProperty Name="UserReplies" Relationship="Self.FK_UserReplies_UserQuestions" FromRole="UserQuestions" ToRole="UserReplies" />
+        </EntityType>
+        <EntityType Name="UserReply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Likes" Type="Int32" />
+          <Property Name="Dislikes" Type="Int32" />
+          <NavigationProperty Name="UserQuestion" Relationship="Self.FK_UserReplies_UserQuestions" FromRole="UserReplies" ToRole="UserQuestions" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserReplies_Users" FromRole="UserReplies" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subscribed" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ArticleComments" Relationship="Self.FK_ArticleComments_Users" FromRole="Users" ToRole="ArticleComments" />
+          <NavigationProperty Name="UserQuestions" Relationship="Self.FK_UserQuestions_Users" FromRole="Users" ToRole="UserQuestions" />
+          <NavigationProperty Name="UserReplies" Relationship="Self.FK_UserReplies_Users" FromRole="Users" ToRole="UserReplies" />
+          <NavigationProperty Name="VideoComments" Relationship="Self.FK_VideoComments_Users" FromRole="Users" ToRole="VideoComments" />
+          <NavigationProperty Name="VideoLessons" Relationship="Self.UserWatchedVideos" FromRole="Users" ToRole="VideoLessons" />
+        </EntityType>
+        <EntityType Name="VideoComment">
+          <Key>
+            <PropertyRef Name="VideoId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="VideoId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_VideoComments_Users" FromRole="VideoComments" ToRole="Users" />
+          <NavigationProperty Name="VideoLesson" Relationship="Self.FK_VideoComments_VideoLessons" FromRole="VideoComments" ToRole="VideoLessons" />
+        </EntityType>
+        <EntityType Name="VideoLesson">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="VideoLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="YearNo" Type="Int32" />
+          <Property Name="UnitNo" Type="Int32" />
+          <Property Name="LessonNo" Type="Int32" />
+          <Property Name="ArticleId" Type="Int32" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_VideoLessons_Courses" FromRole="VideoLessons" ToRole="Courses" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_VideoLessons" FromRole="VideoLessons" ToRole="Questions" />
+          <NavigationProperty Name="VideoComments" Relationship="Self.FK_VideoComments_VideoLessons" FromRole="VideoLessons" ToRole="VideoComments" />
+          <NavigationProperty Name="WrittenArticle" Relationship="Self.FK_VideoLessons_WrittenArticles" FromRole="VideoLessons" ToRole="WrittenArticles" />
+          <NavigationProperty Name="WrittenArticles" Relationship="Self.FK_WrittenArticles_VideoLessons" FromRole="VideoLessons" ToRole="WrittenArticles" />
+          <NavigationProperty Name="Users" Relationship="Self.UserWatchedVideos" FromRole="VideoLessons" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="WrittenArticle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VideoLessonId" Type="Int32" />
+          <Property Name="YearNo" Type="Int32" />
+          <Property Name="UnitNo" Type="Int32" />
+          <Property Name="LessonNo" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ArticleComments" Relationship="Self.FK_ArticleComments_WrittenArticles" FromRole="WrittenArticles" ToRole="ArticleComments" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_WrittenArticles" FromRole="WrittenArticles" ToRole="Questions" />
+          <NavigationProperty Name="VideoLessons" Relationship="Self.FK_VideoLessons_WrittenArticles" FromRole="WrittenArticles" ToRole="VideoLessons" />
+          <NavigationProperty Name="VideoLesson" Relationship="Self.FK_WrittenArticles_VideoLessons" FromRole="WrittenArticles" ToRole="VideoLessons" />
+        </EntityType>
+        <Association Name="FK_ArticleComments_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="ArticleComments" Type="Self.ArticleComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleComments_WrittenArticles">
+          <End Role="WrittenArticles" Type="Self.WrittenArticle" Multiplicity="1" />
+          <End Role="ArticleComments" Type="Self.ArticleComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WrittenArticles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleComments">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exams_Courses">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+          <End Role="Exams" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exams">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoLessons_Courses">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+          <End Role="VideoLessons" Type="Self.VideoLesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoLessons">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Exams">
+          <End Role="Exams" Type="Self.Exam" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_VideoLessons">
+          <End Role="VideoLessons" Type="Self.VideoLesson" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoLessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_WrittenArticles">
+          <End Role="WrittenArticles" Type="Self.WrittenArticle" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WrittenArticles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QustOptions_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="QustOptions" Type="Self.QustOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QustOptions">
+              <PropertyRef Name="QuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuestions_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserQuestions" Type="Self.UserQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserQuestions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReplies_UserQuestions">
+          <End Role="UserQuestions" Type="Self.UserQuestion" Multiplicity="0..1" />
+          <End Role="UserReplies" Type="Self.UserReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserReplies">
+              <PropertyRef Name="QuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReplies_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserReplies" Type="Self.UserReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserReplies">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComments_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="VideoComments" Type="Self.VideoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComments_VideoLessons">
+          <End Role="VideoLessons" Type="Self.VideoLesson" Multiplicity="1" />
+          <End Role="VideoComments" Type="Self.VideoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoLessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoComments">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoLessons_WrittenArticles">
+          <End Role="WrittenArticles" Type="Self.WrittenArticle" Multiplicity="0..1" />
+          <End Role="VideoLessons" Type="Self.VideoLesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WrittenArticles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoLessons">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WrittenArticles_VideoLessons">
+          <End Role="VideoLessons" Type="Self.VideoLesson" Multiplicity="0..1" />
+          <End Role="WrittenArticles" Type="Self.WrittenArticle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoLessons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WrittenArticles">
+              <PropertyRef Name="VideoLessonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserWatchedVideos">
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="VideoLessons" Type="Self.VideoLesson" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ElearningVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArticleComments" EntityType="Self.ArticleComment" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Exams" EntityType="Self.Exam" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QustOptions" EntityType="Self.QustOption" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="UserQuestions" EntityType="Self.UserQuestion" />
+          <EntitySet Name="UserReplies" EntityType="Self.UserReply" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="VideoComments" EntityType="Self.VideoComment" />
+          <EntitySet Name="VideoLessons" EntityType="Self.VideoLesson" />
+          <EntitySet Name="WrittenArticles" EntityType="Self.WrittenArticle" />
+          <AssociationSet Name="FK_ArticleComments_Users" Association="Self.FK_ArticleComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ArticleComments" EntitySet="ArticleComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleComments_WrittenArticles" Association="Self.FK_ArticleComments_WrittenArticles">
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+            <End Role="ArticleComments" EntitySet="ArticleComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exams_Courses" Association="Self.FK_Exams_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Exams" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoLessons_Courses" Association="Self.FK_VideoLessons_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Exams" Association="Self.FK_Questions_Exams">
+            <End Role="Exams" EntitySet="Exams" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_VideoLessons" Association="Self.FK_Questions_VideoLessons">
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_WrittenArticles" Association="Self.FK_Questions_WrittenArticles">
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QustOptions_Questions" Association="Self.FK_QustOptions_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QustOptions" EntitySet="QustOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuestions_Users" Association="Self.FK_UserQuestions_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserQuestions" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReplies_UserQuestions" Association="Self.FK_UserReplies_UserQuestions">
+            <End Role="UserQuestions" EntitySet="UserQuestions" />
+            <End Role="UserReplies" EntitySet="UserReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReplies_Users" Association="Self.FK_UserReplies_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserReplies" EntitySet="UserReplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComments_Users" Association="Self.FK_VideoComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VideoComments" EntitySet="VideoComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComments_VideoLessons" Association="Self.FK_VideoComments_VideoLessons">
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+            <End Role="VideoComments" EntitySet="VideoComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoLessons_WrittenArticles" Association="Self.FK_VideoLessons_WrittenArticles">
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WrittenArticles_VideoLessons" Association="Self.FK_WrittenArticles_VideoLessons">
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+            <End Role="WrittenArticles" EntitySet="WrittenArticles" />
+          </AssociationSet>
+          <AssociationSet Name="UserWatchedVideos" Association="Self.UserWatchedVideos">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="VideoLessons" EntitySet="VideoLessons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ElearningVModelStoreContainer" CdmEntityContainer="ElearningVEntities">
+          <EntitySetMapping Name="ArticleComments">
+            <EntityTypeMapping TypeName="ElearningVModel.ArticleComment">
+              <MappingFragment StoreEntitySet="ArticleComments">
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="ElearningVModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exams">
+            <EntityTypeMapping TypeName="ElearningVModel.Exam">
+              <MappingFragment StoreEntitySet="Exams">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="MaxDegree" ColumnName="MaxDegree" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="ElearningVModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QustOptions">
+            <EntityTypeMapping TypeName="ElearningVModel.QustOption">
+              <MappingFragment StoreEntitySet="QustOptions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="QuestId" ColumnName="QuestId" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ElearningVModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserQuestions">
+            <EntityTypeMapping TypeName="ElearningVModel.UserQuestion">
+              <MappingFragment StoreEntitySet="UserQuestions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+                <ScalarProperty Name="Dislikes" ColumnName="Dislikes" />
+                <ScalarProperty Name="AnswersCount" ColumnName="AnswersCount" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserReplies">
+            <EntityTypeMapping TypeName="ElearningVModel.UserReply">
+              <MappingFragment StoreEntitySet="UserReplies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuestId" ColumnName="QuestId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+                <ScalarProperty Name="Dislikes" ColumnName="Dislikes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ElearningVModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Subscribed" ColumnName="Subscribed" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoComments">
+            <EntityTypeMapping TypeName="ElearningVModel.VideoComment">
+              <MappingFragment StoreEntitySet="VideoComments">
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoLessons">
+            <EntityTypeMapping TypeName="ElearningVModel.VideoLesson">
+              <MappingFragment StoreEntitySet="VideoLessons">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="VideoLink" ColumnName="VideoLink" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="YearNo" ColumnName="YearNo" />
+                <ScalarProperty Name="UnitNo" ColumnName="UnitNo" />
+                <ScalarProperty Name="LessonNo" ColumnName="LessonNo" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WrittenArticles">
+            <EntityTypeMapping TypeName="ElearningVModel.WrittenArticle">
+              <MappingFragment StoreEntitySet="WrittenArticles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="VideoLessonId" ColumnName="VideoLessonId" />
+                <ScalarProperty Name="YearNo" ColumnName="YearNo" />
+                <ScalarProperty Name="UnitNo" ColumnName="UnitNo" />
+                <ScalarProperty Name="LessonNo" ColumnName="LessonNo" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserWatchedVideos" TypeName="ElearningVModel.UserWatchedVideos" StoreEntitySet="UserWatchedVideos">
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="VideoLessons">
+              <ScalarProperty Name="Id" ColumnName="VideoId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

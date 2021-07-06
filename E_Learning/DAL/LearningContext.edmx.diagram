@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12a3fb918c76486590702e104f22b356" Name="Diagram1">
+        <EntityTypeShape EntityType="ElearningVModel.ArticleComment" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.Cours" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.Exam" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.Question" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.QustOption" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.sysdiagram" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.UserQuestion" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.UserReply" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.User" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.VideoComment" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.VideoLesson" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElearningVModel.WrittenArticle" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="ElearningVModel.FK_ArticleComments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_ArticleComments_WrittenArticles" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_Exams_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_VideoLessons_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_Questions_Exams" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_Questions_VideoLessons" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_Questions_WrittenArticles" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_QustOptions_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_UserQuestions_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_UserReplies_UserQuestions" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_UserReplies_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_VideoComments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_VideoComments_VideoLessons" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_VideoLessons_WrittenArticles" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.FK_WrittenArticles_VideoLessons" ManuallyRouted="false" />
+        <AssociationConnector Association="ElearningVModel.UserWatchedVideos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
